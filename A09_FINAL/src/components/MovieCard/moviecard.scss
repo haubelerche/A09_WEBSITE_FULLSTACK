@@ -1,0 +1,63 @@
+.movieCard {
+  position: relative;
+  width: 260px;
+  height: 400px;
+  background-color: #1e1e1e;
+  color: white;
+  border-radius: 8px;
+  overflow: hidden;
+  margin: 40px auto;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+
+  &:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 16px rgb(192, 0, 0);
+  }
+
+  .moviePoster {
+    width: 100%;
+    height: 70%;
+    object-fit: cover;
+    background-color: #ddd;
+  }
+
+  .movieInfo {
+    padding: 10px;
+
+    .movieTitle {
+      font-size: 18px;
+      font-weight: bold;
+      margin: 5px 0;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .movieReleaseDate {
+      font-size: 14px;
+      color: #ccc;
+    }
+  }
+
+  .favouriteIcon {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    cursor: pointer;
+
+    .favourite {
+      font-size: 30px;
+      color: #5b5b5b;
+      transition: transform 0.2s ease-in-out, color 0.3s ease;
+
+      &.filled {
+        color: #b41406;
+      }
+
+      &:hover {
+        transform: scale(1.2);
+      }
+    }
+  }
+}

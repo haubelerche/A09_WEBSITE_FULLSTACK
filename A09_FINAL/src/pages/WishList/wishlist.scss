@@ -1,0 +1,85 @@
+.wishlist-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #ffffff;
+  overflow: hidden;
+
+
+  .header {
+    width: 100%;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #ffffff;
+    padding: 60px;
+
+    .hamburger-container {
+      display: flex;
+      align-items: center;
+      margin-left:60px;
+      svg {
+        color: #000000;
+        width: 30px;
+        height: 30px;
+        transition: color 0.3s;
+        &:hover {
+          color: #930000; // Hiệu ứng khi hover
+        }
+      }
+    }
+
+    .heading {
+
+      text-align: center;
+
+
+      font-size: 2rem;
+      font-weight: bold;
+      color: #020202;
+
+
+    }
+
+    .count-pill {
+      font-size: 1rem;
+      color: #fff;
+      background-color: rgba(70, 68, 68, 0.97);
+      padding:5px 20px;
+      border-radius: 20px;
+      margin-right:60px;
+    }
+  }
+
+  .container {
+    width: 90%;
+    margin: 0 auto;
+
+    .movie-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 20px;
+      justify-content: center;
+      margin-top: 40px;
+      width: 100%;
+    }
+
+    .loading,
+    .error,
+    .no-movies {
+      text-align: center;
+      font-size: 1.2rem;
+      color: #ff4c4c; // Màu đỏ cho lỗi
+    }
+  }
+
+  footer {
+
+    width: 100%;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
+
+  }
+}

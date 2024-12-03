@@ -1,0 +1,48 @@
+
+  .hamburger-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    top: 40px;
+    left: 60px;
+
+    svg {
+      width: 30px;
+      height: 30px;
+      color: #ffffff;
+      transition: color 0.3s;
+
+      &:hover {
+        color: #ff0000; /* Màu khi hover */
+        transform: scale(1.3);
+      }
+    }
+  }
+
+  .sidebar {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: -200px;
+    width: 200px;
+    height: 2000vh;
+    background-color: rgba(0, 0, 0, 0.7);
+    transition: left 0.3s ease-in-out;
+    z-index: 999;
+    cursor: pointer;
+    display: flex;
+
+    &.open {
+      left: 0;
+    }
+
+    .sidebar-content {
+      line-height: 60px;
+      font-size: 20px;
+      display: flex;
+      flex-direction: column;
+      padding: 60px;
+      color: white;
+
+    }
+  }

@@ -1,0 +1,67 @@
+.searchBarContainer {
+  width: 100%;
+  margin: 20px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  .searchInputWrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 80%;
+    max-width: 800px;
+    margin-bottom: 20px;
+
+    input {
+      flex: 1;
+      height: 40px;
+      padding: 0 15px;
+      border: 1px solid #ccc;
+      border-radius: 5px 0 0 5px;
+      font-size: 16px;
+      outline: none;
+
+      &:focus {
+        border-color: #701010;
+      }
+    }
+
+    button {
+      height: 40px;
+      padding: 0 20px;
+      border: none;
+      background-color: #930000;
+      color: #fcfcfc;
+      font-size: 16px;
+      border-radius: 0 5px 5px 0;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+
+      &:hover {
+        background-color: #bd0000;
+      }
+    }
+  }
+
+  .searchResults {
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .noResults {
+      font-size: 18px;
+      color: #888;
+      text-align: center;
+      margin-top: 20px;
+    }
+
+    .moviesGrid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+      width: 100%;
+    }
+  }
+}

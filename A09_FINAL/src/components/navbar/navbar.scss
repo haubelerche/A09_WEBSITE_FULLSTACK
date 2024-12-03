@@ -1,0 +1,94 @@
+.navbar {
+  width: 100%;
+  font-size: 18px;
+  position: relative;
+  top: 0;
+  background-size: cover;
+  background-position: center;
+  height: 700px;
+  transition: background-image 0.5s ease-out;
+
+  .container {
+    padding: 20px 50px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .left,
+  .right {
+    z-index: 1;
+  }
+
+  .center {
+    position: absolute;
+    top: -40px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1;
+
+    img {
+      height: auto;
+    }
+  }
+
+  .right {
+    display: flex;
+    align-items: center;
+
+    .auth-btn,
+    .profile {
+      position: relative;
+
+      .dropdown-icon {
+        font-size: 4rem; /* Mũi tên lớn hơn */
+        color: #ffffff;
+        cursor: pointer;
+        transition: transform 0.5s ease;
+
+        &:hover {
+          transform: rotate(180deg);
+          color: #ff0202;
+        }
+      }
+
+      /* Giữ dropdown hiển thị ngay cả khi chuột di chuyển */
+      .dropdown-content {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 50%;
+        transform: translateX(-50%);
+        background-color: #ffffff; /* Nền trắng */
+        color: #000; /* Màu chữ đen */
+        border-radius: 10px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+        z-index: 10;
+        padding: 10px 15px;
+        width: 100px;
+        transition: opacity 0.3s ease, visibility 0.3s ease;
+
+        span {
+          display: block;
+          padding: 10px;
+          font-size: 1rem;
+          cursor: pointer;
+          text-align: center;
+          transition: background-color 0.3s;
+
+          &:hover {
+            background-color: #f1f1f1;
+          }
+        }
+      }
+
+      /* Giữ dropdown hiển thị nếu hover vào icon hoặc dropdown-content */
+      &:hover .dropdown-content,
+      .dropdown-content:hover {
+        display: block;
+        opacity: 1;
+        visibility: visible;
+      }
+    }
+  }
+}
