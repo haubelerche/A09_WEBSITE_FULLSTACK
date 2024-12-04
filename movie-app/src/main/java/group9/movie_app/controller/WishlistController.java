@@ -16,17 +16,17 @@ import java.util.List;
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
 public class WishlistController {
     private final WishlistService wishlistService;
-
+    //used
     @GetMapping("/user/wishlist")
     public List<WishlistDTO> getAllWishlists() {
         return wishlistService.getWishlist();
     }
-
+    //used
     @PostMapping("/user/wishlist/{movieId}")
     public ResponseEntity<Wishlist> addWishlist(@PathVariable("movieId") int movieId) {
         return ResponseEntity.ok(wishlistService.addWishlist(movieId));
     }
-
+//used
     @DeleteMapping("/user/wishlist/{wishlistId}")
     public ResponseEntity<String> deleteWishlist(@PathVariable("wishlistId") String wishlistId) {
         try {

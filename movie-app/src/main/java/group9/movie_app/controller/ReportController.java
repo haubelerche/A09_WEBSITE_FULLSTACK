@@ -18,7 +18,7 @@ import java.util.Map;
 @RequestMapping("movies-app")
 public class ReportController {
     private final ReportService reportService;
-    // Hiện mặc định là 3, lựa chọn 5 nhập .../admin/least-reviews?limit=5
+    // had
     @GetMapping("/top-views")
     public List<Movie> getTopMoviesByViews(@RequestParam(defaultValue = "3") int limit) {
         return reportService.getTopMoviesByViews(limit);
@@ -67,8 +67,14 @@ public class ReportController {
         return ResponseEntity.ok(movies);
     }
 
+    //để trong reportdetail
     @GetMapping("/admin/genres-views")
     public Map<String, Long> getTopMoviesByGenres() {
         return reportService.getTopGenresViews();
+    }
+
+    @GetMapping("/admin/genres-wishlist")
+    public Map<String, Long> getTopGenresByWishlist() {
+        return reportService.getTopGenresByWishlist();
     }
 }

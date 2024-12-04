@@ -6,9 +6,9 @@ import two from "../../images/two.png";
 import three from "../../images/three.png";
 import four from "../../images/four.png";
 import five from "../../images/five.png";
-import avatar from "../../images/avatar.png";
+
 import { ArrowDropDown, Menu } from "@material-ui/icons";
-import { Link } from 'react-router-dom';
+
 import { useNavigate } from 'react-router-dom'; // Import useNavigate
 import {AuthContext} from "../../Service/AuthContext.js";
 

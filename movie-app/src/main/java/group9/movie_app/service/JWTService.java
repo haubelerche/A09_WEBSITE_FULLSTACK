@@ -5,6 +5,7 @@ import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
+import org.apache.catalina.Role;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
@@ -13,8 +14,10 @@ import java.nio.charset.StandardCharsets;
 import java.security.Key;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.function.Function;
+import java.util.stream.Collectors;
 
 @Service
 public class JWTService {
@@ -43,18 +46,20 @@ public class JWTService {
         return Jwts.builder()
                 .setClaims(extraClaims)
                 .setSubject(user.getUsername())
-                .claim("role", user.getRole())
+                .claim("authorities", List.of(user.getRole())) // Đặt quyền đúng định dạng
                 .setIssuedAt(new Date(System.currentTimeMillis()))
                 .setExpiration(new Date(System.currentTimeMillis() + 86400000)) // Token valid for 1 day
-                .signWith(getSignInKey()) // Use the signing key
+                .signWith(getSignInKey())
                 .compact();
     }
-
+//da gap loi conflix quyen
     /**
      * Generate JWT token without extra claims.
      */
     public String generateToken(User user) {
-        return generateToken(new HashMap<>(), user);
+        Map<String, Object> claims = new HashMap<>();
+        claims.put("authorities", List.of(user.getRole().name())); // Lấy tên role từ đối tượng Role
+        return generateToken(claims, user);
     }
 
     /**
@@ -82,7 +87,7 @@ public class JWTService {
     /**
      * Extract all claims from the JWT token.
      */
-    private Claims extractAllClaims(String token) {
+    public Claims extractAllClaims(String token) {
         return Jwts.parserBuilder()
                 .setSigningKey(getSignInKey())
                 .build()

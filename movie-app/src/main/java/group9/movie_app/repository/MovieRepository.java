@@ -16,27 +16,32 @@ public interface MovieRepository extends JpaRepository<Movie, Integer> {
     List<Movie> findByDirectorContainingIgnoreCase(String director);
     List<Movie> findByTypeContainingIgnoreCase(String type);
 
-    @Query(value = "SELECT * FROM Movie m ORDER BY m.views DESC LIMIT :limit", nativeQuery = true)
+    @Query(value = "SELECT * FROM Movie m WHERE m.views IS NOT NULL ORDER BY m.views DESC LIMIT :limit", nativeQuery = true)
     List<Movie> findTopMoviesByViewsLimit(@Param("limit") int limit);
 
-    @Query(value = "SELECT * FROM Movie m ORDER BY m.views ASC LIMIT :limit", nativeQuery = true)
+    @Query(value = "SELECT * FROM Movie m WHERE m.views IS NOT NULL ORDER BY m.views ASC LIMIT :limit", nativeQuery = true)
     List<Movie> findLeastMoviesByViewsLimit(@Param("limit") int limit);
 
-    @Query(value = "SELECT * FROM Movie m ORDER BY m.releaseDate DESC LIMIT :limit", nativeQuery = true)
+    @Query(value = "SELECT * FROM Movie m WHERE m.releaseDate IS NOT NULL ORDER BY m.releaseDate DESC LIMIT :limit", nativeQuery = true)
     List<Movie> findTopMoviesByRecentRelease(@Param("limit") int limit);
 
-    @Query(value = "SELECT * FROM Movie m ORDER BY m.releaseDate ASC LIMIT :limit", nativeQuery = true)
+    @Query(value = "SELECT * FROM Movie m WHERE m.releaseDate IS NOT NULL ORDER BY m.releaseDate ASC LIMIT :limit", nativeQuery = true)
     List<Movie> findTopMoviesByOldestRelease(@Param("limit") int limit);
 
-    @Query(value = "SELECT TRIM(SUBSTRING_INDEX(SUBSTRING_INDEX(m.genres, ',', n.n), ',', -1)) AS genre, " +
-            "SUM(m.views) AS total_views " +
+    @Query(value = "SELECT m.genres AS genre, SUM(m.views) AS total_views " +
             "FROM Movie m " +
-            "JOIN (SELECT 1 AS n UNION ALL SELECT 2 UNION ALL SELECT 3 UNION ALL SELECT 4 UNION ALL SELECT 5 UNION ALL SELECT 6 UNION ALL SELECT 7) n " +
-            "ON n.n <= LENGTH(m.genres) - LENGTH(REPLACE(m.genres, ',', '')) + 1 " +
-            "GROUP BY genre " +
-            "ORDER BY total_views DESC",
-            nativeQuery = true)
+            "WHERE m.genres IS NOT NULL AND m.views IS NOT NULL " +
+            "GROUP BY m.genres " +
+            "ORDER BY total_views DESC LIMIT 5", nativeQuery = true)
     List<Object[]> findTopGenresByViews();
+
+    @Query(value = "SELECT m.genres AS genre, COUNT(w.wishlistId) AS wishlist_count " +
+            "FROM Movie m " +
+            "LEFT JOIN Wishlist w ON m.movieId = w.movieId " +
+            "WHERE m.genres IS NOT NULL " +
+            "GROUP BY m.genres " +
+            "ORDER BY wishlist_count DESC LIMIT 5", nativeQuery = true)
+    List<Object[]> findTopGenresByWishlist();
 
     @Query("SELECT m, COUNT(r) AS reviewCount " +
             "FROM Review r JOIN r.movie m " +
@@ -61,4 +66,7 @@ public interface MovieRepository extends JpaRepository<Movie, Integer> {
             "GROUP BY m.movieId " +
             "ORDER BY wishlistCount ASC")
     List<Object[]> findLeastWishlistMovies();
+
+    @Query("SELECT m FROM Movie m WHERE m.movieId IN :movieIds")
+    List<Movie> findMoviesByIds(@Param("movieIds") List<Integer> movieIds);
 }

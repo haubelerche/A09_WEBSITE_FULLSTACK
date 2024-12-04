@@ -74,9 +74,26 @@ public class ReportService {
     public Map<String, Long> getTopGenresViews() {
         List<Object[]> results = movieRepository.findTopGenresByViews();
         Map<String, Long> map = new LinkedHashMap<>();
+
         for (Object[] result : results) {
             String genre = (String) result[0];
-            Long count = ((BigDecimal) result[1]).longValue();
+            BigDecimal countValue = (BigDecimal) result[1];
+
+            // Handle null values gracefully
+            Long count = (countValue != null) ? countValue.longValue() : 0L;
+
+            map.put(genre, count);
+        }
+
+        return map;
+    }
+
+    public Map<String, Long> getTopGenresByWishlist() {
+        List<Object[]> results = movieRepository.findTopGenresByWishlist();
+        Map<String, Long> map = new LinkedHashMap<>();
+        for (Object[] result : results) {
+            String genre = (String) result[0];
+            Long count = (Long) result[1];
             map.put(genre, count);
         }
         return map;

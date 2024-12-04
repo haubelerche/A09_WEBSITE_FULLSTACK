@@ -32,6 +32,7 @@
       }
     }
   }
+
   .show-more-btn {
     display: block;
     margin: 10px auto;
@@ -43,7 +44,7 @@
     cursor: pointer;
 
     &:hover {
-      background-color: #0056b3;
+      background-color: #c00000;
     }
   }
   .review-form {
@@ -84,4 +85,19 @@
       }
     }
   }
-}
+}  .delete-review-btn{
+     color: white;
+     background-color: transparent;
+     margin-left: 200px;
+     font-size: 14px;
+     text-decoration: underline;
+     border: none; /* Xóa viền */
+     box-shadow: none; /* Xóa hiệu ứng đổ bóng */
+     padding: 0; /* Xóa padding để chỉ có chữ */
+     cursor: pointer; /* Giữ con trỏ dạng nút bấm */
+
+
+     &:hover {
+      color: #c00000;
+     }
+   }

@@ -56,6 +56,31 @@ const Review = ({ movieId }) => {
         }
     };
 
+    // Xử lý xóa bình luận
+    const handleDeleteReview = async (reviewId) => {
+        try {
+            const response = await fetch(
+                `http://localhost:8080/movies-app/user-admin/reviews/${reviewId}`,
+                {
+                    method: "DELETE",
+                    headers: {
+                        Authorization: `Bearer ${localStorage.getItem("token")}`,
+                    },
+                }
+            );
+
+            if (response.ok) {
+                setReviews((prevReviews) =>
+                    prevReviews.filter((review) => review.reviewId !== reviewId)
+                );
+            } else {
+                console.error("Failed to delete review:", response.statusText);
+            }
+        } catch (error) {
+            console.error("Error deleting review:", error);
+        }
+    };
+
     // Xử lý hiển thị thêm 6 bình luận
     const handleShowMore = () => {
         setVisibleReviews((prev) => prev + 6); // Tăng số lượng bình luận hiển thị lên 6
@@ -73,6 +98,13 @@ const Review = ({ movieId }) => {
                             <strong>{review.username}</strong>: {review.reviewBody}
                         </p>
                         <small>{new Date(review.createdTime).toLocaleString()}</small>
+                        {/* Nút xóa bình luận */}
+                        <button
+                            className="delete-review-btn"
+                            onClick={() => handleDeleteReview(review.reviewId)}
+                        >
+                            Delete
+                        </button>
                     </div>
                 ))}
             </div>

@@ -3,21 +3,27 @@ package group9.movie_app.controller;
 import group9.movie_app.dto.AuthenticationRequest;
 import group9.movie_app.dto.ChangePasswordRequest;
 import group9.movie_app.dto.RegisterRequest;
+import group9.movie_app.entity.User;
+import group9.movie_app.repository.UserRepository;
 import group9.movie_app.service.AuthenticationService;
+import group9.movie_app.service.JWTService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
-//sửa lại de handle được registration 
+
 @Controller
 @RequiredArgsConstructor
 @RequestMapping("/movies-app")
 public class AuthenticationController {
 
     private final AuthenticationService service;
-//chay dc
+    private final JWTService jwtService; // Ensure JWTService is injected
+    private final UserRepository userRepository; // Inject UserRepository
+
     @PostMapping("/register")
     public ResponseEntity<?> register(@RequestBody RegisterRequest request) {
         try {
@@ -27,17 +33,17 @@ public class AuthenticationController {
             return ResponseEntity.badRequest().body(Map.of("message", e.getMessage()));
         }
     }
-//chay dc
+
     @PostMapping("/login")
     public ResponseEntity<?> authenticate(@RequestBody AuthenticationRequest request) {
         try {
             var response = service.authenticate(request);
-            return ResponseEntity.ok(response); // Return token if successful
+            return ResponseEntity.ok(response);
         } catch (RuntimeException e) {
             return ResponseEntity.badRequest().body(Map.of("message", e.getMessage()));
         }
     }
-//chay dc
+
     @PutMapping("/user-admin/password")
     public ResponseEntity<String> changePassword(@RequestBody ChangePasswordRequest request) {
         try {
@@ -45,6 +51,19 @@ public class AuthenticationController {
             return ResponseEntity.ok("Password changed successfully");
         } catch (RuntimeException e) {
             return ResponseEntity.badRequest().body(e.getMessage());
+        }
+    }
+
+    @GetMapping("/user-admin/role")
+    public ResponseEntity<Map<String, String>> getUserRole(@RequestHeader("Authorization") String token) {
+        try {
+            String email = jwtService.extractUsername(token.replace("Bearer ", ""));
+            User user = userRepository.findByEmail(email)
+                    .orElseThrow(() -> new IllegalArgumentException("User not found"));
+            Map<String, String> response = Map.of("role", user.getRole().name());
+            return ResponseEntity.ok(response);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.FORBIDDEN).body(Map.of("message", "Access denied"));
         }
     }
 }

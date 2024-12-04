@@ -11,18 +11,6 @@ const handleRequest = async (request, errorMessage) => {
     }
 };
 
-// Fetch all movies
-export const getAllMovies = async () => {
-    return await handleRequest(
-        axiosInstance.get("/list"),
-        "Error fetching all movies"
-    );
-};
-
-
-
-
-
 
 // Fetch movies of type "Film"
 export const getFilm = async () => {

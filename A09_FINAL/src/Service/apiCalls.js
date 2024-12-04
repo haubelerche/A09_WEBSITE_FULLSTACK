@@ -34,12 +34,3 @@ export const register = async (user) => {
     }
 };
 
-// Đăng xuất
-export const logoutUser = (dispatch) => {
-    // Xóa dữ liệu khỏi LocalStorage
-    localStorage.removeItem("token");
-    localStorage.removeItem("user");
-
-    // Dispatch action LOGOUT để cập nhật trạng thái Context
-    dispatch(logout());
-};

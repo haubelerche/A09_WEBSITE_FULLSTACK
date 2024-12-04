@@ -8,6 +8,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -52,9 +53,11 @@ public class MovieController {
 
     //Thêm phim
     @PostMapping("/admin/addmovie")
-    public Movie addMovie(@RequestBody MovieRequest movieRequest) {
-        return movieService.createMovie(movieRequest);
+    public ResponseEntity<Movie> addMovie(@RequestBody MovieRequest movieRequest) {
+        Movie createdMovie = movieService.createMovie(movieRequest);
+        return ResponseEntity.status(HttpStatus.CREATED).body(createdMovie);
     }
+
     //Chỉnh sửa phim
     @PutMapping("/admin/movie/{movieId}")
     public Movie updateMovie(@PathVariable("movieId") int movieId,
@@ -75,5 +78,16 @@ public class MovieController {
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         }
+    }
+
+    @PostMapping("/admin/recommendations/{movieId}")
+    public ResponseEntity<?> addRecommendation(@PathVariable int movieId) {
+    movieService.addRecommendation(movieId);
+    return ResponseEntity.ok("Movie added to recommendations");
+    }
+
+    @GetMapping("/recommendations")
+    public List<Movie> getRecommendations(@RequestParam(defaultValue = "20") int limit) {
+    return movieService.getRecommendations(limit);
     }
 }

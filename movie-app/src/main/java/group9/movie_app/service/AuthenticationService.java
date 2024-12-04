@@ -4,13 +4,12 @@ import group9.movie_app.dto.AuthenticationRequest;
 import group9.movie_app.dto.AuthenticationResponse;
 import group9.movie_app.dto.ChangePasswordRequest;
 import group9.movie_app.dto.RegisterRequest;
-import group9.movie_app.entity.*;
+import group9.movie_app.entity.Role;
+import group9.movie_app.entity.User;
 import group9.movie_app.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -31,7 +30,7 @@ public class AuthenticationService {
                 .name(request.getName())
                 .email(request.getEmail())
                 .password(passwordEncoder.encode(request.getPassword()))
-                .role(Role.USER)
+                .role(Role.USER) // Default role is USER
                 .build();
         userRepository.save(user);
         var jwtToken = jwtService.generateToken(user);
@@ -46,21 +45,26 @@ public class AuthenticationService {
                 )
         );
         var user = userRepository.findByEmail(request.getEmail())
-                .orElseThrow();
+                .orElseThrow(() -> new IllegalArgumentException("Invalid credentials"));
         var jwtToken = jwtService.generateToken(user);
         return AuthenticationResponse.builder().token(jwtToken).build();
     }
 
     public void changePassword(ChangePasswordRequest request) {
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        var authentication = SecurityContextHolder.getContext().getAuthentication();
         String email = authentication.getName();
         var user = userRepository.findByEmail(email)
-                .orElseThrow();
+                .orElseThrow(() -> new IllegalArgumentException("User not found"));
         if (!passwordEncoder.matches(request.getOldPassword(), user.getPassword())) {
             throw new IllegalArgumentException("Old password is incorrect");
         }
-        String encodedNewPassword = passwordEncoder.encode(request.getNewPassword());
-        user.setPassword(encodedNewPassword);
+        user.setPassword(passwordEncoder.encode(request.getNewPassword()));
         userRepository.save(user);
+    }
+
+    public String getUserRole(String email) {
+        var user = userRepository.findByEmail(email)
+                .orElseThrow(() -> new IllegalArgumentException("User not found"));
+        return user.getRole().name();
     }
 }

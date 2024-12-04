@@ -1,17 +1,37 @@
 import React, { useState, useEffect } from "react";
-import "./hamburger.scss"; // Create this SCSS file for styling
+import "./hamburger.scss";
 import { Menu } from "@material-ui/icons";
 import { Link } from "react-router-dom";
 
-const Hamburger = ({ isAuthenticated }) => {
+const Hamburger = () => {
     const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+    const [isAdmin, setIsAdmin] = useState(false);
 
-    // Toggle sidebar visibility
-    const toggleSidebar = () => {
-        setIsSidebarOpen(!isSidebarOpen);
-    };
+    // Fetch role on mount
+    useEffect(() => {
+        const token = localStorage.getItem("token");
+        if (token) {
+            fetch("http://localhost:8080/movies-app/user-admin/role", {
+                method: "GET",
+                headers: { Authorization: `Bearer ${token}` },
+            })
+                .then((response) => {
+                    if (!response.ok) {
+                        throw new Error("Failed to fetch role");
+                    }
+                    return response.json();
+                })
+                .then((data) => {
+                    setIsAdmin(data.role === "ADMIN");
+                })
+                .catch((error) => {
+                    console.error("Error fetching role:", error);
+                });
+        }
+    }, []);
 
-    // Close sidebar when clicking outside
+    const toggleSidebar = () => setIsSidebarOpen(!isSidebarOpen);
+
     useEffect(() => {
         const handleOutsideClick = (event) => {
             if (!event.target.closest(".sidebar") && !event.target.closest(".hamburger-btn")) {
@@ -38,18 +58,34 @@ const Hamburger = ({ isAuthenticated }) => {
                     <Link to="/" className="link" onClick={() => setIsSidebarOpen(false)}>
                         <span>Home</span>
                     </Link>
-                    <Link to="/film" className="link" onClick={() => setIsSidebarOpen(false)}>
-                        <span>Films</span>
-                    </Link>
-                    <Link to="/series" className="link" onClick={() => setIsSidebarOpen(false)}>
-                        <span>Series</span>
-                    </Link>
-                        <Link to="/wishlist" className="link" onClick={() => setIsSidebarOpen(false)}>
+                    {isAdmin ? (
+                        <>
+                            <Link to="/admin/film-management" className="link" onClick={() => setIsSidebarOpen(false)}>
+                                <span>Manage Films</span>
+                            </Link>
+                            <Link to="/admin/series-management" className="link" onClick={() => setIsSidebarOpen(false)}>
+                                <span>Manage Series</span>
+                            </Link>
+                            <Link to="/admin/report-details" className="link" onClick={() => setIsSidebarOpen(false)}>
+                                <span>Report Details</span>
+                            </Link>
+                        </>
+                    ) : (
+                        <>
+                            <Link to="/film" className="link" onClick={() => setIsSidebarOpen(false)}>
+                                <span>Films</span>
+                            </Link>
+                            <Link to="/series" className="link" onClick={() => setIsSidebarOpen(false)}>
+                                <span>Series</span>
+                            </Link>
+                            <Link to="/wishlist" className="link" onClick={() => setIsSidebarOpen(false)}>
                                 <span>WishList</span>
                             </Link>
                             <Link to="/setting" className="link" onClick={() => setIsSidebarOpen(false)}>
                                 <span>Setting</span>
                             </Link>
+                        </>
+                    )}
                 </div>
             </div>
         </div>

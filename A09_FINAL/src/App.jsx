@@ -10,6 +10,9 @@ import Film from "./pages/Film/Film.jsx";
 import Series from "./pages/Series/Series.jsx";
 import WishList from "./pages/WishList/WishList.jsx";
 import ChangePass from "./components/ChangePass/ChangePass.jsx";
+import FilmManagement from "./pages/FilmManagement/FilmManagement.jsx"
+import SeriesManagement from "./pages/SeriesManagement/SeriesManagement.jsx";
+import ReportDetails from "./pages/ReportDetails/ReportDetails.jsx";
 
 const App = () => {
     const { isAuthenticated } = useContext(AuthContext);
@@ -26,6 +29,9 @@ const App = () => {
                 <Route path="/series" element={<Series />} />
                 <Route path="/wishlist" element={<WishList />} />
                <Route path="/setting" element={<ChangePass />} />
+                <Route path="/admin/film-management" element={<FilmManagement/>} />
+                <Route path="/admin/series-management" element={<SeriesManagement/>} />
+                <Route path="/admin/report-details" element={<ReportDetails/>} />
             </Routes>
         </Router>
     );

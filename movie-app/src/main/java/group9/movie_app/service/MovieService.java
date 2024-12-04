@@ -7,6 +7,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -84,4 +85,17 @@ public class MovieService {
         movieRepository.deleteById(movieId);
     }
 
+
+    private final List<Movie> recommendations = new ArrayList<>();
+    public void addRecommendation(int movieId) {
+        Movie movie = movieRepository.findById(movieId)
+                .orElseThrow(() -> new RuntimeException("Movie not found"));
+        if (!recommendations.contains(movie)) {
+            recommendations.add(movie);
+        }
+    }
+
+    public List<Movie> getRecommendations(int limit) {
+        return recommendations.stream().limit(limit).toList();
+    }
 }
