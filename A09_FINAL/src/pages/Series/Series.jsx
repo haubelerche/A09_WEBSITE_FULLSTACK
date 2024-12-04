@@ -12,9 +12,9 @@ const Series = () => {
     useEffect(() => {
         const fetchSeries = async () => {
             try {
-                const seriesData = await getSeries(); // Fetch series data
+                const seriesData = await getSeries();
                 if (Array.isArray(seriesData)) {
-                    setSeries(seriesData); // Ensure valid data is set
+                    setSeries(seriesData);
                 } else {
                     throw new Error("Unexpected series data format");
                 }
@@ -27,7 +27,7 @@ const Series = () => {
         fetchSeries();
     }, []);
 
-    // Split movies into chunks for grid layout
+
     const chunkMovies = (movies, chunkSize) => {
         const chunks = [];
         for (let i = 0; i < movies.length; i += chunkSize) {
@@ -36,7 +36,7 @@ const Series = () => {
         return chunks;
     };
 
-    const rows = chunkMovies(series, 5); // 5 movies per row
+    const rows = chunkMovies(series, 5);
 
     return (
         <div className="series">
@@ -60,13 +60,13 @@ const Series = () => {
                                     }
                                     return (
                                         <MovieCard
-                                            key={movie.movieId} // Ensure unique key
+                                            key={movie.movieId}
                                             movie={{
                                                 movieId: movie.movieId,
                                                 title: movie.title,
                                                 posterLink: movie.posterLink,
                                                 releaseDate: movie.releaseDate,
-                                            }} // Pass only required props
+                                            }}
                                         />
                                     );
                                 })}

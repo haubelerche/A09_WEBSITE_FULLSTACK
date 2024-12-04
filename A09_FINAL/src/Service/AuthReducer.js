@@ -4,40 +4,40 @@ const AuthReducer = (state, action) => {
             return {
                 ...state,
                 user: null,
-                token: null, // Đang thực hiện đăng nhập, chưa có token
+                token: null,
                 isAuthenticated: false,
-                isFetching: true, // Đang trong trạng thái gửi yêu cầu
+                isFetching: true,
                 error: false,
             };
         case "LOGIN_SUCCESS":
             return {
                 ...state,
-                user: action.payload.user, // Dữ liệu người dùng từ backend
-                token: action.payload.token, // JWT token từ backend
-                isAuthenticated: true, // Đăng nhập thành công
-                isFetching: false, // Đã hoàn thành yêu cầu
+                user: action.payload.user,
+                token: action.payload.token,
+                isAuthenticated: true,
+                isFetching: false,
                 error: false,
             };
         case "LOGIN_FAILURE":
             return {
                 ...state,
                 user: null,
-                token: null, // Không có token nếu đăng nhập thất bại
+                token: null,
                 isAuthenticated: false,
-                isFetching: false, // Kết thúc trạng thái yêu cầu
-                error: true, // Có lỗi xảy ra
+                isFetching: false,
+                error: true,
             };
         case "LOGOUT":
             return {
                 ...state,
                 user: null,
-                token: null, // Xóa token khi đăng xuất
-                isAuthenticated: false, // Trạng thái không đăng nhập
+                token: null,
+                isAuthenticated: false,
                 isFetching: false,
                 error: false,
             };
         default:
-            return state; // Trả về trạng thái hiện tại nếu không khớp action
+            return state;
     }
 };
 

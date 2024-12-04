@@ -2,19 +2,19 @@ import axiosInstance from '../utils/axiosInstance.js';
 import { loginFailure, loginStart, loginSuccess, logout } from "./AuthAction.js";
 import axios from "axios";
 
-// API Đăng nhập
+
 export const login = async (user, dispatch) => {
-    dispatch(loginStart()); // Bắt đầu trạng thái đăng nhập
+    dispatch(loginStart());
     try {
-        // Gửi request đăng nhập tới backend
+
         const res = await axiosInstance.post("/login", user);
 
-        // Lưu token và thông tin người dùng vào LocalStorage
-        const { token, ...userData } = res.data;
-        localStorage.setItem("token", token); // Lưu token riêng
-        localStorage.setItem("user", JSON.stringify(userData)); // Lưu thông tin người dùng
 
-        // Cập nhật state trong Context
+        const { token, ...userData } = res.data;
+        localStorage.setItem("token", token);
+        localStorage.setItem("user", JSON.stringify(userData));
+
+
         dispatch(loginSuccess(res.data));
     } catch (err) {
         console.error("Login failed:", err);
@@ -22,15 +22,17 @@ export const login = async (user, dispatch) => {
     }
 };
 
-// API Đăng ký
+
 export const register = async (user) => {
     try {
-        // Gửi request đăng ký tới backend
+
         const res = await axiosInstance.post("/register", user);
-        return res.data; // Trả về kết quả để xử lý thêm nếu cần
+        return res.data;
     } catch (err) {
         console.error("Register failed:", err.response?.data || err.message);
-        throw err; // Quăng lỗi ra ngoài để xử lý
+        throw err;
     }
 };
 
+/*vì sao ở những phần khác t dùng fetch vs token luôn mà ở đây có cả axios thì... vđ là hồi mới làm
+mình có gì đâu*/

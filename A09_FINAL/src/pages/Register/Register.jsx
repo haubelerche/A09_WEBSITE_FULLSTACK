@@ -20,10 +20,10 @@ const Register = () => {
             alert("Name cannot be empty!");
             return;
         }
-        setName(enteredName); // Lưu tên vào state
-        setEmail(""); // Xóa giá trị email nếu có
-        setPassword(""); // Xóa giá trị password nếu có
-        setStep(2); // Chuyển sang bước tiếp theo
+        setName(enteredName);
+        setEmail("");
+        setPassword("");
+        setStep(2);
     };
 
     const handleFinish = async (e) => {
@@ -35,11 +35,11 @@ const Register = () => {
         }
 
         try {
-            // Gọi API đăng ký
+
             const res = await register({ name, email, password });
             alert(res.message || "Registration successful!");
             localStorage.setItem("token", res.token);
-            navigate("/login"); // Chuyển tới trang Login sau khi đăng ký thành công
+            navigate("/login");
         } catch (err) {
             console.error("Register failed:", err.response?.data || err);
             alert(err.response?.data?.message || "Registration failed. Please try again.");

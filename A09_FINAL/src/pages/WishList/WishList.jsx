@@ -9,7 +9,7 @@ const WishList = () => {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
-    // Fetch wishlist data từ backend
+
     useEffect(() => {
         const fetchWishlist = async () => {
             try {
@@ -25,7 +25,7 @@ const WishList = () => {
                 }
 
                 const data = await response.json();
-                setWishList(data.filter((item) => item && item.movie)); // Lọc mục hợp lệ
+                setWishList(data.filter((item) => item && item.movie));
             } catch (error) {
                 console.error("Error fetching wishlist:", error);
                 setError("Failed to load wishlist. Please try again.");
@@ -37,7 +37,7 @@ const WishList = () => {
         fetchWishlist();
     }, []);
 
-    // Xóa một bộ phim khỏi danh sách wishlist
+
     const handleRemoveFromWishlist = (movieId) => {
         setWishList((prev) => prev.filter((item) => item.movie.movieId !== movieId));
     };

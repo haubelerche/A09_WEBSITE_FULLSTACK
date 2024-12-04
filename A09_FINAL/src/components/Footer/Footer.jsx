@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import logo from "../../images/logo.png"; // Import your logo
-import "./footer.scss"; // Import styles
+import logo from "../../images/logo.png";
+import "./footer.scss";
 import wave1 from "../../images/wave1.png";
 const Footer = () => {
-    const [emailBody, setEmailBody] = useState(""); // State for feedback input
+    const [emailBody, setEmailBody] = useState("");
 
     const handleSendFeedback = () => {
         const recipient = "dramaqueen0v0@gmail.com";

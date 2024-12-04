@@ -7,7 +7,7 @@ const Hamburger = () => {
     const [isSidebarOpen, setIsSidebarOpen] = useState(false);
     const [isAdmin, setIsAdmin] = useState(false);
 
-    // Fetch role on mount
+    // tam dac cua hau hu hu hu
     useEffect(() => {
         const token = localStorage.getItem("token");
         if (token) {

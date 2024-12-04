@@ -98,11 +98,11 @@
   .sign-up {
     font-weight: bold;
     text-decoration: underline;
-    color: #007bff; // Optional: Change the color to indicate it's a link
+    color: #007bff;
     cursor: pointer;
 
     &:hover {
-      color: #0056b3; // Optional: Darken the color on hover
+      color: #0056b3;
     }
   }
 }

@@ -9,7 +9,7 @@ import five from "../../images/five.png";
 
 import { ArrowDropDown, Menu } from "@material-ui/icons";
 
-import { useNavigate } from 'react-router-dom'; // Import useNavigate
+import { useNavigate } from 'react-router-dom';
 import {AuthContext} from "../../Service/AuthContext.js";
 
 import Hamburger from "../../components/Menu/Hamburger.jsx";
@@ -39,7 +39,7 @@ const Navbar = () => {
             setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length);
         }, 7000);
 
-        return () => clearInterval(interval); // Cleanup on unmount
+        return () => clearInterval(interval);
     }, []);
 
     useEffect(() => {

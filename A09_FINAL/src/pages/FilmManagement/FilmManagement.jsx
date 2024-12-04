@@ -51,13 +51,13 @@ const FilmManagement = () => {
         fetchMovies();
     }, []);
 
-    // Xử lý thay đổi trong form
+    //xl form td
     const handleInputChange = (e) => {
         const { name, value } = e.target;
         setFormValues({ ...formValues, [name]: value });
     };
 
-    // Xử lý thêm phim (Add)
+
     const handleAddMovie = async () => {
         try {
             const response = await fetch("http://localhost:8080/movies-app/admin/addmovie", {
@@ -74,14 +74,14 @@ const FilmManagement = () => {
                 throw new Error(`Failed to add movie: ${errorMessage}`);
             }
 
-            fetchMovies(); // Làm mới danh sách phim
-            setShowModal(false); // Đóng modal
+            fetchMovies();
+            setShowModal(false);
         } catch (error) {
             console.error("Error adding movie:", error);
         }
     };
 
-    // Xử lý cập nhật phim (Update)
+    // ud
     const handleUpdateMovie = async () => {
         try {
             const url = `http://localhost:8080/movies-app/admin/movie/${currentMovie.movieId}`;
@@ -99,8 +99,8 @@ const FilmManagement = () => {
                 throw new Error(`Failed to update movie: ${errorMessage}`);
             }
 
-            fetchMovies(); // Làm mới danh sách phim
-            setShowModal(false); // Đóng modal
+            fetchMovies(); //refresh ds
+            setShowModal(false); //Đóng modal
         } catch (error) {
             console.error("Error updating movie:", error);
         }
@@ -108,7 +108,7 @@ const FilmManagement = () => {
 
     // Mở modal thêm phim
     const handleOpenAddModal = () => {
-        setCurrentMovie(null); // Xóa dữ liệu của phim đang chỉnh sửa
+        setCurrentMovie(null); // xóa dữ liệu của phim đang chỉnh sửa
         setFormValues({
             title: "",
             releaseDate: "",
@@ -148,7 +148,7 @@ const FilmManagement = () => {
                 throw new Error(`Failed to delete movie: ${errorMessage}`);
             }
 
-            fetchMovies(); // Làm mới danh sách phim sau khi xóa
+            fetchMovies();
         } catch (error) {
             console.error("Error deleting movie:", error);
         }

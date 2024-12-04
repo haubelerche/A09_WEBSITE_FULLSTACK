@@ -38,3 +38,6 @@ const App = () => {
 };
 
 export default App;
+
+
+//this website was created by noobs so there's a lot of redundant stuffs I know, but still didn't want to delete 'em...

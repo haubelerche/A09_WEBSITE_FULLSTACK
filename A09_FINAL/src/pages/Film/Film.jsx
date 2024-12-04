@@ -12,9 +12,9 @@ const Film = () => {
     useEffect(() => {
         const fetchFilm = async () => {
             try {
-                const filmData = await getFilm(); // Fetch film data
+                const filmData = await getFilm();
                 if (Array.isArray(filmData)) {
-                    setFilm(filmData); // Ensure valid data is set
+                    setFilm(filmData);
                 } else {
                     throw new Error("Unexpected film data format");
                 }
@@ -27,7 +27,7 @@ const Film = () => {
         fetchFilm();
     }, []);
 
-    // Split movies into chunks for grid layout
+
     const chunkMovies = (movies, chunkSize) => {
         const chunks = [];
         for (let i = 0; i < movies.length; i += chunkSize) {
@@ -36,7 +36,7 @@ const Film = () => {
         return chunks;
     };
 
-    const rows = chunkMovies(film, 5); // 5 movies per row
+    const rows = chunkMovies(film, 5);
 
     return (
         <div className="film">
@@ -60,13 +60,13 @@ const Film = () => {
                                     }
                                     return (
                                         <MovieCard
-                                            key={movie.movieId} // Ensure unique key
+                                            key={movie.movieId}
                                             movie={{
                                                 movieId: movie.movieId,
                                                 title: movie.title,
                                                 posterLink: movie.posterLink,
                                                 releaseDate: movie.releaseDate,
-                                            }} // Pass only required props
+                                            }}
                                         />
                                     );
                                 })}

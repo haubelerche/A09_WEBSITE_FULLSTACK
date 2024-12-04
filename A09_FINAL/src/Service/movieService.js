@@ -1,6 +1,6 @@
 import axiosInstance from "../utils/axiosInstance.js";
 
-// Helper function to handle API requests
+
 const handleRequest = async (request, errorMessage) => {
     try {
         const response = await request;
@@ -12,11 +12,11 @@ const handleRequest = async (request, errorMessage) => {
 };
 
 
-// Fetch movies of type "Film"
+
 export const getFilm = async () => {
     try {
         const response = await axiosInstance.get("/film");
-        return response.data; // Return the list of films
+        return response.data;
     } catch (error) {
         console.error("Error fetching films:", error);
         throw error;

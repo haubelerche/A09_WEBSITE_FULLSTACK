@@ -7,10 +7,10 @@ import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 
 const MovieCard = ({ movie, onRemoveFromWishlist }) => {
     const [isFavourite, setIsFavourite] = useState(false);
-    const [wishlistItemId, setWishlistItemId] = useState(null); // Lưu ID của wishlistItem
+    const [wishlistItemId, setWishlistItemId] = useState(null);
     const navigate = useNavigate();
 
-    // Kiểm tra trạng thái yêu thích khi component được render
+
     useEffect(() => {
         const fetchWishlist = async () => {
             try {
@@ -28,7 +28,7 @@ const MovieCard = ({ movie, onRemoveFromWishlist }) => {
 
                 if (wishlistItem) {
                     setIsFavourite(true);
-                    setWishlistItemId(wishlistItem.wishlistId); // Lưu lại wishlistId
+                    setWishlistItemId(wishlistItem.wishlistId);
                 } else {
                     setIsFavourite(false);
                     setWishlistItemId(null);
@@ -56,7 +56,7 @@ const MovieCard = ({ movie, onRemoveFromWishlist }) => {
 
             const addedItem = await response.json();
             setIsFavourite(true);
-            setWishlistItemId(addedItem.wishlistId); // Cập nhật wishlistId mới
+            setWishlistItemId(addedItem.wishlistId);
         } catch (error) {
             console.error("Error adding to wishlist:", error);
         }
@@ -77,9 +77,9 @@ const MovieCard = ({ movie, onRemoveFromWishlist }) => {
             if (!response.ok) throw new Error("Failed to remove from wishlist");
 
             setIsFavourite(false);
-            setWishlistItemId(null); // Xóa ID khỏi trạng thái
+            setWishlistItemId(null); // x óa ID khỏi trạng thái
             if (onRemoveFromWishlist) {
-                onRemoveFromWishlist(movie.movieId); // Cập nhật danh sách wishlist trong WishList
+                onRemoveFromWishlist(movie.movieId); // cập nhật danh sách wishlist trong WishList
             }
         } catch (error) {
             console.error("Error removing from wishlist:", error);
@@ -96,7 +96,7 @@ const MovieCard = ({ movie, onRemoveFromWishlist }) => {
         }
     };
 
-    // Điều hướng tới trang xem phim
+    // điều hướng tới trang xem phim
     const handleClick = () => {
         navigate(`/movie/${movie.movieId}`, { state: { movie } });
     };

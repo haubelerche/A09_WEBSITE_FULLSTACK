@@ -5,10 +5,10 @@ const axiosInstance = axios.create({
     headers: {
         "Content-Type": "application/json",
     },
-    withCredentials: true, // Send cookies along with requests
+    withCredentials: true,
 });
 
-// Request Interceptor: Attach token to every request
+
 axiosInstance.interceptors.request.use(
     (config) => {
         const token = localStorage.getItem("token");
@@ -22,7 +22,7 @@ axiosInstance.interceptors.request.use(
     },
     (error) => Promise.reject(error)
 );
-// Response Interceptor: Handle errors globally
+
 axiosInstance.interceptors.response.use(
     (response) => response,
     (error) => {

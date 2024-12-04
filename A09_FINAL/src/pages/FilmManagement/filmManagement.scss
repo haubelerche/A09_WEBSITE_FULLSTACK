@@ -1,11 +1,11 @@
 .film-management-wrapper {
   display: flex;
   flex-direction: column;
-  min-height: 100vh; /* Đảm bảo chiều cao tối thiểu bằng chiều cao viewport */
+  min-height: 100vh;
 }
 
 .film-management {
-  flex: 1; /* Nội dung chính sẽ chiếm không gian trống */
+  flex: 1;
   padding: 20px;
   font-family: Arial, sans-serif;
 

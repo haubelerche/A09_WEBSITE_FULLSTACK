@@ -18,8 +18,8 @@ const Login = () => {
         e.preventDefault();
 
         try {
-            await login({ email, password }, dispatch); // Truyền dispatch vào hàm login
-            navigate("/"); // Điều hướng về Home sau khi đăng nhập thành công
+            await login({ email, password }, dispatch);
+            navigate("/");
         } catch (err) {
             console.error("Login failed:", err);
             const errorMessage = err.response?.data?.message || "Login failed. Please try again.";
@@ -32,7 +32,7 @@ const Login = () => {
                 <div className="wrapper">
                     <ArrowBack
                         className="return-icon"
-                        onClick={() => navigate("/")} // Điều hướng về trang Home
+                        onClick={() => navigate("/")}
                     />
                     <img className="logo" src={logo} alt="logo" style={{width: "140px", height: "140px"}}/>
                 </div>

@@ -16,7 +16,7 @@ const ChangePass = () => {
             return;
         }
 
-        // Call the backend API to change the password
+        // doi mat khauu
         fetch("http://localhost:8080/movies-app/user-admin/password", {
             method: "PUT",
             headers: {
