@@ -8,11 +8,11 @@
   ),
   url("../../images/SignInPic.jpg");
   background-size: cover;
-  position: fixed;
+  position: relative;
 
   .top {
     .wrapper {
-      padding: 20px 50px;
+      padding: 30px 50px;
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -43,20 +43,22 @@
     top: 0;
     left: 0;
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+    align-items: center; // Căn giữa theo chiều dọc
+    justify-content: center; // Căn giữa theo chiều ngang
     color: white;
 
     form {
       width: 300px;
-      height: 300px;
       padding: 30px;
       border-radius: 5px;
       background-color: var(--main-color);
       display: flex;
       flex-direction: column;
       justify-content: space-around;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 1);
+      position: absolute;
+      left: 40%;
+      right: 50%;
 
       input {
         height: 40px;

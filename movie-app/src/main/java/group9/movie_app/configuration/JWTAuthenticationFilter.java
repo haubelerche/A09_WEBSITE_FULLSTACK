@@ -39,32 +39,34 @@ public class JWTAuthenticationFilter extends OncePerRequestFilter {
         final String jwt;
         final String username;
 
+        //HẬU CHỈNH
         try {
-            // Check if Authorization header is present and starts with "Bearer "
+            // kiem tra xem có authen header chua
             if (authHeader == null || !authHeader.startsWith("Bearer ")) {
                 System.out.println("Authorization header missing or invalid.");
                 filterChain.doFilter(request, response);
                 return;
             }
 
-            // Extract JWT from Authorization header
+            // trích jwt từ auth header
             jwt = authHeader.substring(7);
             username = jwtService.extractUsername(jwt);
 
-            // Authenticate user if username is valid and not already authenticated
+            // kiểm tra xem user ton tại chua
             if (username != null && SecurityContextHolder.getContext().getAuthentication() == null) {
                 UserDetails userDetails = userDetailsService.loadUserByUsername(username);
 
-                // Validate the JWT token
+                //HẬU CHỈNH
+                // xác thuc JWT token
                 if (jwtService.isTokenValid(jwt, userDetails)) {
                     Claims claims = jwtService.extractAllClaims(jwt);
 
-                    // Extract authorities from claims
+                    //kểm tra quyền
                     List<SimpleGrantedAuthority> authorities = ((List<?>) claims.get("authorities")).stream()
                             .map(role -> new SimpleGrantedAuthority(role.toString()))
                             .collect(Collectors.toList());
 
-                    // Create authentication token
+                    //  tạo  token
                     UsernamePasswordAuthenticationToken authToken =
                             new UsernamePasswordAuthenticationToken(userDetails, null, authorities);
 

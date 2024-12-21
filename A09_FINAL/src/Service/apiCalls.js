@@ -34,5 +34,3 @@ export const register = async (user) => {
     }
 };
 
-/*vì sao ở những phần khác t dùng fetch vs token luôn mà ở đây có cả axios thì... vđ là hồi mới làm
-mình có gì đâu*/

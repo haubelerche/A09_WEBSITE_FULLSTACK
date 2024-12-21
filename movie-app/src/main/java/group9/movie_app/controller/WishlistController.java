@@ -27,6 +27,7 @@ public class WishlistController {
         return ResponseEntity.ok(wishlistService.addWishlist(movieId));
     }
 //used
+//Hậu thêm catch error lúc fix lỗi wishlist
     @DeleteMapping("/user/wishlist/{wishlistId}")
     public ResponseEntity<String> deleteWishlist(@PathVariable("wishlistId") String wishlistId) {
         try {

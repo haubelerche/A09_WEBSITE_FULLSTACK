@@ -1,5 +1,47 @@
-.chart-container {
-  position: relative;
-  height: 300px;
-  width: 100%;
+.report-details-wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  overflow-x: hidden; /* Ngăn lỗi overflow ngang */
+
+  .report-details {
+    flex: 1;
+    font-family: Arial, sans-serif;
+
+    .report-details-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between; /* Đẩy nút hamburger và tiêu đề sang 2 bên */
+      background-color: #f4f4f4;
+      padding: 10px 20px;
+      border-bottom: 1px solid #ddd;
+
+      .hamburger-container {
+        display: flex;
+        align-items: center;
+
+        svg {
+          color: #000; /* Đặt màu đen cho hamburger */
+          width: 30px;
+          height: 30px;
+          transition: color 0.3s;
+
+          &:hover {
+            color: #930000; /* Đổi màu khi hover */
+          }
+        }
+      }
+
+      .header-title {
+        margin: 0;
+        font-size: 24px;
+        color: #333;
+        text-align: right; /* Căn tiêu đề sang góc phải */
+      }
+    }
+
+    .report-details-content {
+      padding: 20px;
+    }
+  }
 }

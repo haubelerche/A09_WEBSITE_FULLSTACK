@@ -158,7 +158,9 @@ const FilmManagement = () => {
         <div className="film-management-wrapper">
             <div className="film-management">
                 <header className="film-management-header ">
-                    <Hamburger />
+                    <div className="hamburger-container">
+                        <Hamburger/>
+                    </div>
                     <h1>Film Management</h1>
                     <button className="btn btn-primary" onClick={handleOpenAddModal}>
                         Add
@@ -206,7 +208,7 @@ const FilmManagement = () => {
                 </table>
             </div>
 
-            {/* Modal Add/Edit */}
+            {/* thêm sửa */}
             <Modal show={showModal} onHide={() => setShowModal(false)}>
                 <Modal.Header closeButton>
                     <Modal.Title>{currentMovie ? "Edit Movie" : "Add Movie"}</Modal.Title>

@@ -15,6 +15,20 @@
     align-items: center;
     margin-bottom: 20px;
 
+    .hamburger-container {
+      display: flex;
+      align-items: center;
+      margin-left:60px;
+      svg {
+        color: #000000;
+        width: 30px;
+        height: 30px;
+        transition: color 0.3s;
+        &:hover {
+          color: #930000; // Hiệu ứng khi hover
+        }
+      }
+    }
     h1 {
       font-size: 24px;
       color: #333;

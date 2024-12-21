@@ -2,6 +2,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  min-height: 100vh;
   background-color: #ffffff;
   overflow: hidden;
 
@@ -54,7 +55,8 @@
 
   .container {
     width: 90%;
-    margin: 0 auto;
+    margin: 40px auto;
+    flex: 1;
 
     .movie-grid {
       display: grid;
@@ -73,13 +75,13 @@
       color: #ff4c4c; // Màu đỏ cho lỗi
     }
   }
-
   footer {
-
+    position: relative;
+    margin-top: auto;
+    bottom: 0;
     width: 100%;
     padding: 20px;
     text-align: center;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
+    box-shadow: 0 4px 20px rgba(255, 0, 0, 0.6);
 
-  }
-}
+  }}

@@ -15,14 +15,16 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
 
+
+//HẬU CHỈNH
 @Controller
 @RequiredArgsConstructor
 @RequestMapping("/movies-app")
 public class AuthenticationController {
 
     private final AuthenticationService service;
-    private final JWTService jwtService; // Ensure JWTService is injected
-    private final UserRepository userRepository; // Inject UserRepository
+    private final JWTService jwtService;
+    private final UserRepository userRepository;
 
     @PostMapping("/register")
     public ResponseEntity<?> register(@RequestBody RegisterRequest request) {

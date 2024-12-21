@@ -158,7 +158,9 @@ const SeriesManagement = () => {
         <div className="series-management-wrapper">
             <div className="series-management">
                 <header className="series-management-header ">
-                    <Hamburger />
+                    <div className="hamburger-container">
+                        <Hamburger/>
+                    </div>
                     <h1>Series Management</h1>
                     <button className="btn btn-primary" onClick={handleOpenAddModal}>
                         Add

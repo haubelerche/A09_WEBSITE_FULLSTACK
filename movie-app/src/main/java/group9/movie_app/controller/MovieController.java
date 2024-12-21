@@ -80,6 +80,7 @@ public class MovieController {
         }
     }
 
+    //HẬU CHỈNH
     @PostMapping("/admin/recommendations/{movieId}")
     public ResponseEntity<?> addRecommendation(@PathVariable int movieId) {
     movieService.addRecommendation(movieId);
