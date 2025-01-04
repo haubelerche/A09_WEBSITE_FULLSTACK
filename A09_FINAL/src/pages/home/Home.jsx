@@ -75,6 +75,8 @@ const Home = () => {
     return (
         <div className="home">
             <Navbar />
+            <h1>Xin chao</h1>
+
             <SearchBar />
             <div className="content">
                 {error ? (

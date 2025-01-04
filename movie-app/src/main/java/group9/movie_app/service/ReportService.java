@@ -23,13 +23,15 @@ public class ReportService {
         return movieRepository.findLeastMoviesByViewsLimit(limit);
     }
 
+    //
     public List<Movie> getTopMoviesByRecentRelease(int limit) {
         return movieRepository.findTopMoviesByRecentRelease(limit);
     }
-
+    //
     public List<Movie> getTopMoviesByOldestRelease(int limit) {
         return movieRepository.findTopMoviesByOldestRelease(limit);
     }
+    //
 
     public List<Map<String, Object>> getTopMoviesByReviews(int limit) {
         List<Object[]> results = movieRepository.findTopMoviesByReviews();

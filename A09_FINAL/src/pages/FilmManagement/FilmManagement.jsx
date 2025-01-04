@@ -175,6 +175,7 @@ const FilmManagement = () => {
                         <th>Director</th>
                         <th>Genres</th>
                         <th>Views</th>
+
                         <th>Actions</th>
                     </tr>
                     </thead>

@@ -16,6 +16,10 @@ public interface MovieRepository extends JpaRepository<Movie, Integer> {
     List<Movie> findByDirectorContainingIgnoreCase(String director);
     List<Movie> findByTypeContainingIgnoreCase(String type);
 
+
+
+
+
     @Query(value = "SELECT * FROM Movie m WHERE m.views IS NOT NULL ORDER BY m.views DESC LIMIT :limit", nativeQuery = true)
     List<Movie> findTopMoviesByViewsLimit(@Param("limit") int limit);
 
@@ -28,6 +32,7 @@ public interface MovieRepository extends JpaRepository<Movie, Integer> {
     @Query(value = "SELECT * FROM Movie m WHERE m.releaseDate IS NOT NULL ORDER BY m.releaseDate ASC LIMIT :limit", nativeQuery = true)
     List<Movie> findTopMoviesByOldestRelease(@Param("limit") int limit);
 
+    //TOP THE LOAI BY REVIEWS
     @Query(value = "SELECT m.genres AS genre, SUM(m.views) AS total_views " +
             "FROM Movie m " +
             "WHERE m.genres IS NOT NULL AND m.views IS NOT NULL " +
@@ -35,6 +40,7 @@ public interface MovieRepository extends JpaRepository<Movie, Integer> {
             "ORDER BY total_views DESC LIMIT 5", nativeQuery = true)
     List<Object[]> findTopGenresByViews();
 
+    //TOP GENRES BY WISHLIST
     @Query(value = "SELECT m.genres AS genre, COUNT(w.wishlistId) AS wishlist_count " +
             "FROM Movie m " +
             "LEFT JOIN Wishlist w ON m.movieId = w.movieId " +
@@ -43,6 +49,7 @@ public interface MovieRepository extends JpaRepository<Movie, Integer> {
             "ORDER BY wishlist_count DESC LIMIT 5", nativeQuery = true)
     List<Object[]> findTopGenresByWishlist();
 
+    //
     @Query("SELECT m, COUNT(r) AS reviewCount " +
             "FROM Review r JOIN r.movie m " +
             "GROUP BY m.movieId " +

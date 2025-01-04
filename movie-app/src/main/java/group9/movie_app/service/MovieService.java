@@ -98,4 +98,5 @@ public class MovieService {
     public List<Movie> getRecommendations(int limit) {
         return recommendations.stream().limit(limit).toList();
     }
+
 }
