@@ -45,15 +45,6 @@
 
 ---
 
-## Tools Used
-- **IntelliJ IDEA**: A powerful IDE for Java development.
-- **MySQL Workbench**: A graphical tool for designing and managing MySQL databases.
-- **Postman**: For API testing and development.
-- **Visual Paradigm**: Used for UML modeling and system design.
-- **JWT.IO**: For creating and analyzing JSON Web Tokens.
-
----
-
 ## Project Structure
 - **Frontend**: `A09_FINAL`
 - **Backend**: `movie-app`
@@ -62,12 +53,6 @@
 ---
 
 ## Getting Started
-
-### Prerequisites
-- Node.js
-- Java 8+
-- MySQL Server
-
 ### Installation Steps
 1. Clone the repository.
 2. Set up the MySQL database using the `finalA09.sql` file.
@@ -75,11 +60,11 @@
 4. Run the backend using Spring Boot.
 5. Navigate to the frontend directory (`A09_FINAL`) and install dependencies using:
    ```bash
-   npm install
+   yarn install
    ```
 6. Start the frontend development server:
    ```bash
-   npm start
+   yarn/yarn install
    ```
 7. Access the application in your browser.
 
