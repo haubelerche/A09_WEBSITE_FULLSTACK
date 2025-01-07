@@ -1,7 +1,7 @@
 
-# README for Fullstack Web Project: A09 Movie Promotion
+Fullstack Web Project: A09 Movie Promotion
 
-## Project Overview
+## Overview
 🎥 The **A09 Movie Promotion Website** is a fullstack web application designed to promote and provide detailed information about movies. The platform caters to both users and administrators, ensuring a rich, personalized user experience and efficient content management capabilities for administrators. 🌟
 
 ---
