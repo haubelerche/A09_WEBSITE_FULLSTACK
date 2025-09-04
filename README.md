@@ -16,6 +16,9 @@ Fullstack Web Project: A09 Movie Promotion
 - **Movie Reviews**: Users can leave comments and ratings for movies to share their opinions with the community.
 - **Wishlist**: Users can add or remove movies from their wishlist for easier tracking and revisiting.
 - **Feedback Submission**: Users can send feedback to the website administrators to help improve their experience.
+<img width="1919" height="899" alt="Register" src="https://github.com/user-attachments/assets/84a1ae10-64d8-441a-8204-c826ce47aa27" />
+<img width="1919" height="1079" alt="Trang Our Film" src="https://github.com/user-attachments/assets/d08ea7ce-cd86-489a-9a3e-c43c35604455" />
+<img width="1919" height="1079" alt="Trang OurSeries" src="https://github.com/user-attachments/assets/81caed85-66f6-4881-a43a-b2793f89b83f" />
 
 ### For Administrators:
 - **Content Management**: Admins can add, edit, or delete movie-related information, including descriptions, trailers, posters, and other details.
@@ -24,7 +27,8 @@ Fullstack Web Project: A09 Movie Promotion
 - **Featured Movies Management**: Admins can add or remove movies from the homepage recommendations to help users discover new or highlighted films.
 - **User Feedback Management**: Admins can view and respond to user feedback to improve service quality.
 
----
+<img width="1919" height="1079" alt="Trang Report" src="https://github.com/user-attachments/assets/d2fe6298-e9b0-42db-ad96-cbd18127527d" />
+
 
 ## Technologies Used
 
