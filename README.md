@@ -17,8 +17,18 @@ Fullstack Web Project: A09 Movie Promotion
 - **Wishlist**: Users can add or remove movies from their wishlist for easier tracking and revisiting.
 - **Feedback Submission**: Users can send feedback to the website administrators to help improve their experience.
 <img width="1919" height="899" alt="Register" src="https://github.com/user-attachments/assets/84a1ae10-64d8-441a-8204-c826ce47aa27" />
+
+<img width="1892" height="903" alt="Home" src="https://github.com/user-attachments/assets/15226ca8-6d98-42ed-8e16-bc1cdb74bc27" />
+
 <img width="1919" height="1079" alt="Trang Our Film" src="https://github.com/user-attachments/assets/d08ea7ce-cd86-489a-9a3e-c43c35604455" />
+
 <img width="1919" height="1079" alt="Trang OurSeries" src="https://github.com/user-attachments/assets/81caed85-66f6-4881-a43a-b2793f89b83f" />
+
+<img width="1919" height="1079" alt="Video Phim" src="https://github.com/user-attachments/assets/55cc497d-1afb-4a93-b337-ae72f767f314" />
+
+<img width="1919" height="1079" alt="Thông tin chi tiết phim" src="https://github.com/user-attachments/assets/cf54a872-0530-45e1-beec-54cbbe8a3ada" />
+
+<img width="1919" height="1079" alt="Reviews" src="https://github.com/user-attachments/assets/9cc27810-81f3-48ef-a94a-e1fdba2f17d9" />
 
 ### For Administrators:
 - **Content Management**: Admins can add, edit, or delete movie-related information, including descriptions, trailers, posters, and other details.
@@ -28,6 +38,8 @@ Fullstack Web Project: A09 Movie Promotion
 - **User Feedback Management**: Admins can view and respond to user feedback to improve service quality.
 
 <img width="1919" height="1079" alt="Trang Report" src="https://github.com/user-attachments/assets/d2fe6298-e9b0-42db-ad96-cbd18127527d" />
+
+<img width="1919" height="1079" alt="Tác vụ edit" src="https://github.com/user-attachments/assets/9310b305-020f-4d96-bdf0-ff3b7d0db009" />
 
 
 ## Technologies Used
